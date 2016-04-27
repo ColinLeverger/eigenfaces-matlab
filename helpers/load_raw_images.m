@@ -1,27 +1,31 @@
 % load raw images
-function rawImgSet = loadRawImages()
-    folder = uigetdir;
-    dirListing = dir(folder);
-    dirListing = dirListing(arrayfun(@(x) x.name(1), dirListing) ~= '.');
+function raw_img_set = load_raw_images(folder_path)
+    %folder = uigetdir;
+    folder = folder_path;
+    dir_listing = dir(folder);
+    % remove dot from directory listing
+    dir_listing = dir_listing(arrayfun(@(x) x.name(1), dir_listing) ~= '.');
 
-    imgPaths=[];
-    for d = 1:length(dirListing)
-        if dirListing(d).isdir
-            actualFolder = strcat(folder,'/',dirListing(d).name);
-            listFilesActualFolder = dir(actualFolder);
-            listFilesActualFolder = listFilesActualFolder(arrayfun(@(x) x.name(1), listFilesActualFolder) ~= '.');
+    img_paths=[];
+    for d = 1:length(dir_listing)
+        if dir_listing(d).isdir
+            actual_folder = strcat(folder,'/',dir_listing(d).name);
+            list_files_actual_folder = dir(actual_folder);
+            % Remove dot from directory listing
+            list_files_actual_folder = list_files_actual_folder(arrayfun(@(x) x.name(1), list_files_actual_folder) ~= '.');
             
             files=[];
             for d2 = 1:10
-                file = strcat(folder,'/',dirListing(d).name,'/',listFilesActualFolder(d2).name);
+                file = strcat(folder,'/',dir_listing(d).name,'/',list_files_actual_folder(d2).name);
                 files = [files;cellstr(file);];
             end
-            allImg = sort_nat(files);
-            imgPaths = [imgPaths;allImg(1:5);];
+            all_img = sort_nat(files);
+            img_paths = [img_paths;all_img(1:5);];
         end
     end
-    rawImgSet=[];
-    for i=1:size(imgPaths)
-        rawImgSet=[rawImgSet;imresize(loadImage(char(imgPaths(i)),0),0.5);];
+    
+    raw_img_set=[];
+    for i=1:size(img_paths)
+        raw_img_set=[raw_img_set;imresize(load_image(char(img_paths(i)),0),0.5);];
     end
 end
