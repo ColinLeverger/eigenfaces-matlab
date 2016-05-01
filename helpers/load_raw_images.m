@@ -1,31 +1,38 @@
-% load raw images
+% Load raw images
 function raw_img_set = load_raw_images(folder_path)
-    %folder = uigetdir;
-    folder = folder_path;
-    dir_listing = dir(folder);
-    % remove dot from directory listing
-    dir_listing = dir_listing(arrayfun(@(x) x.name(1), dir_listing) ~= '.');
-
-    img_paths=[];
-    for d = 1:length(dir_listing)
-        if dir_listing(d).isdir
-            actual_folder = strcat(folder,'/',dir_listing(d).name);
-            list_files_actual_folder = dir(actual_folder);
-            % Remove dot from directory listing
-            list_files_actual_folder = list_files_actual_folder(arrayfun(@(x) x.name(1), list_files_actual_folder) ~= '.');
+    % Dir listing, without dots ('.' && '..')
+    dir_listing = remove_dots_from_dir_listing(dir(folder_path));
+    
+    % Nat sort : s1, s2, s3, ..., s40
+    nat_sort_dir_listing = sort_folders(dir_listing);
+    
+    % For every folders...
+    for d = 1:length(nat_sort_dir_listing)
+            % Create path for actual folder
+            actual_folder = strcat(folder_path,'/',nat_sort_dir_listing(d));
+            % List all files in this folder, without '.' && '..' again
+            list_files_actual_folder = remove_dots_from_dir_listing(dir(actual_folder{1,1}));
             
-            files=[];
-            for d2 = 1:10
-                file = strcat(folder,'/',dir_listing(d).name,'/',list_files_actual_folder(d2).name);
-                files = [files;cellstr(file);];
+            % For every file on actual folder, save path of every files
+            for i = 1:length(list_files_actual_folder)
+                files(i,:) = strcat(folder_path,'/',nat_sort_dir_listing(d),'/',list_files_actual_folder(i).name);
             end
             all_img = sort_nat(files);
-            img_paths = [img_paths;all_img(1:5);];
-        end
+            % Take the first 5 images for DB
+            img_paths(d,:) = all_img(1:5);
     end
     
-    raw_img_set=[];
-    for i=1:size(img_paths)
-        raw_img_set=[raw_img_set;imresize(load_image(char(img_paths(i)),0),0.5);];
+    % Save the size of the paths
+    [N,M] = size(img_paths);
+    k = 1;
+    % Create T, with all images changed in vectors
+    for i = 1:N
+        for j = 1:M
+            raw_img = imresize(load_image(char(img_paths(i,j)),0),0.5);
+            % Transform the two-dimentional array in a one-dimentional
+            % vector and store it
+            raw_img_set(k,:) = one_line_img(raw_img);
+            k = k + 1;
+        end
     end
 end
