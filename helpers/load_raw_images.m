@@ -1,4 +1,4 @@
-function [raw_img_set] = load_raw_images(folder_path)
+function [raw_img_set] = load_raw_images(folder_path,number_of_image)
     %raw_img_set: load raw image set (create T) from a folder path.
     % usage:  [raw_img_set] = load_raw_images(folder_path)
     %
@@ -24,7 +24,7 @@ function [raw_img_set] = load_raw_images(folder_path)
             end
             all_img = sort_nat(files);
             % Take the first 5 images for DB
-            img_paths(d,:) = all_img(1:5);
+            img_paths(d,:) = all_img(1:number_of_image);
     end
     
     % Save the size of the paths
