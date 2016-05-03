@@ -1,5 +1,5 @@
 % Load test image
-image_test = load_image('./att_faces/s13/6.pgm',0);
+image_test = load_image('./att_faces/s1/6.pgm',0);
 image_test_one_line = one_line_image(image_test);
 
 % Load data from DB
