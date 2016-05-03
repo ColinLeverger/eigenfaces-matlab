@@ -1,5 +1,7 @@
-% Sort folders with natural sort
-function res = sort_folders(dir_listing)
+function [res] = sort_folders(dir_listing)
+    %sort_folders: sort folder using a natural sort.
+    % usage: [res] = sort_folders(dir_listing)
+
     j = 1;
     for i = 1 : length(dir_listing)
         if dir_listing(i).isdir

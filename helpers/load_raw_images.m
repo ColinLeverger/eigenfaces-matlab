@@ -1,5 +1,10 @@
-% Load raw images
-function raw_img_set = load_raw_images(folder_path)
+function [raw_img_set] = load_raw_images(folder_path)
+    %raw_img_set: load raw image set (create T) from a folder path.
+    % usage:  [raw_img_set] = load_raw_images(folder_path)
+    %
+    % where,
+    %    folder_path is the path of the considered folder.
+    
     % Dir listing, without dots ('.' && '..')
     dir_listing = remove_dots_from_dir_listing(dir(folder_path));
     
