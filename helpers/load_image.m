@@ -1,8 +1,9 @@
 % load an image
-function imgMatrix = loadImage(path,isRGB)
+function img_matrix = load_image(path,isRGB)
     if isRGB == 0
-        imgMatrix = double(imread(path));
+        img_matrix = double(imread(path));
     else
-        imgMatrix = double(rgb2gray(imread(path)));
+        img_matrix = double(rgb2gray(imread(path)));
     end 
+    img_matrix = imresize(img_matrix,0.5);
 end

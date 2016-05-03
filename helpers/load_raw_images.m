@@ -28,10 +28,10 @@ function raw_img_set = load_raw_images(folder_path)
     % Create T, with all images changed in vectors
     for i = 1:N
         for j = 1:M
-            raw_img = imresize(load_image(char(img_paths(i,j)),0),0.5);
+            raw_img = load_image(char(img_paths(i,j)),0);
             % Transform the two-dimentional array in a one-dimentional
             % vector and store it
-            raw_img_set(k,:) = one_line_img(raw_img);
+            raw_img_set(k,:) = one_line_image(raw_img);
             k = k + 1;
         end
     end
