@@ -1,3 +1,4 @@
+% Sort folders with natural sort
 function res = sort_folders(dir_listing)
     j = 1;
     for i = 1 : length(dir_listing)
