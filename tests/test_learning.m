@@ -1,6 +1,4 @@
-function test_learning(path)
-    tic
-    disp('TESTING - START');
+function [first_class_candidate] = test_learning(path,size_of_db)
     % Load test image
     image_test = load_image(path,0);
     % Change the two-dimentional image in a one-dimentional vector
@@ -28,21 +26,20 @@ function test_learning(path)
 
     % Sort diagonal values in ascending
     [diagonal_sorted,diagonal_original_index]=sort(diagonal,'ascend');
-
+    %FIXME
+    first_class_candidate = ceil(diagonal_original_index(1)/size_of_db);
+    
     % Concat images to display the result
     % Here, we take the first N images which are recognized as similar by the
     % program
-    N = 5;
-    recognized_images=[];
-    for i = 1:N
-        recognized_image_in_line = T_db(diagonal_original_index(i),:);
-        recognized_images = [recognized_images reshape(recognized_image_in_line,[56,46])];
-    end
-
-    % Display comparison
-    comparison = [image_test recognized_images];
-    show_image(comparison);
-    disp('TESTING - STOP');
-    toc
-    disp('');
+%     N = 3;
+%     recognized_images=[];
+%     for i = 1:N
+%         recognized_image_in_line = T_db(diagonal_original_index(i),:);
+%         recognized_images = [recognized_images reshape(recognized_image_in_line,[56,46])];
+%     end
+% 
+%     % Display comparison
+%     comparison = [image_test recognized_images];
+%     show_image(comparison);
 end

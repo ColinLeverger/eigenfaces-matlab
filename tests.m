@@ -6,5 +6,13 @@ addpath('./att_faces');
 clear;
 close all;
 
-do_learning(9);
-test_learning('./att_faces/s1/10.pgm');
+disp('DO LEARNING WITHOUT RANDOMISED IMAGE SELECTION');
+perc1 = benchmark(0);
+disp(' ');
+disp('DO LEARNING WITH RANDOMISED IMAGE SELECTION');
+perc2 = benchmark(1);
+
+% Comparison between perfs
+plot(perc1,'red');
+hold on;
+plot(perc2,'blue');

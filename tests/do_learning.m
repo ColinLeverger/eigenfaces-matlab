@@ -1,8 +1,6 @@
 % Script to do the learning
-function do_learning(number_of_images)
-    tic
-    disp('LEARNING - START');
-    T = load_raw_images('./att_faces/',number_of_images);
+function do_learning(number_of_images,nat_sort)
+    T = load_raw_images('./att_faces/',number_of_images,nat_sort);
     [m,S] = create_m_and_s(T);
     T2 = normalize(T,m,S);
 
@@ -14,9 +12,6 @@ function do_learning(number_of_images)
     write_in_db(E,'./data/E.csv');
 
     d = create_d(T2,E);
-    display_eigenfaces(E);
+    %display_eigenfaces(E);
     write_in_db(d,'./data/d.csv');
-    disp('LEARNING - STOP');
-    toc
-    disp('');
 end
