@@ -1,4 +1,4 @@
-function [ perc ] = benchmark( randomise )
+function [ perc ] = benchmark(randomise,size_E)
     %BENCHMARK Summary of this function goes here
     %   Detailed explanation goes here
 
@@ -7,7 +7,7 @@ function [ perc ] = benchmark( randomise )
         res = zeros(40,40);
         learning_announcement = sprintf('DO LEARNING WITH %d IMAGES',i);
         disp(learning_announcement);
-        do_learning(i,randomise);
+        do_learning(i,randomise,size_E);
         for j = 1:40
             for k = i+1:10
                 path_image = sprintf('./att_faces/s%d/%d.pgm',j,k);

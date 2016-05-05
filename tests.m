@@ -6,13 +6,21 @@ addpath('./att_faces');
 clear;
 close all;
 
-disp('DO LEARNING WITHOUT RANDOMISED IMAGE SELECTION');
-perc1 = benchmark(0);
-disp(' ');
-disp('DO LEARNING WITH RANDOMISED IMAGE SELECTION');
-perc2 = benchmark(1);
+size_E = 48;
 
-% Comparison between perfs
-plot(perc1,'red');
-hold on;
-plot(perc2,'blue');
+for size_E = 10:10:100
+    randomize = 0;
+    disp('DO LEARNING WITHOUT RANDOMISED IMAGE SELECTION');
+    perc1 = benchmark(randomize,size_E);
+    disp(' ');
+
+    randomize = 1;
+    disp('DO LEARNING WITH RANDOMISED IMAGE SELECTION');
+    perc2 = benchmark(randomize,size_E);
+
+    % Comparison between perfs
+    figure();
+    plot(perc1,'red');
+    hold on;
+    plot(perc2,'blue');
+end
