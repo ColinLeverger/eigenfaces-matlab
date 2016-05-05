@@ -1,11 +1,10 @@
-function [first_class_candidate] = test_learning(path,size_of_db)
+function [first_candidate_class] = test_learning(path,size_of_db)
     % Load test image
     image_test = load_image(path,0);
     % Change the two-dimentional image in a one-dimentional vector
     image_test_one_line = one_line_image(image_test);
 
     % Load data from DB
-    T_db = read_in_db('./data/T.csv');
     E_db = read_in_db('./data/E.csv');
     d_db = read_in_db('./data/d.csv');
     m_db = read_in_db('./data/m.csv');
@@ -25,13 +24,14 @@ function [first_class_candidate] = test_learning(path,size_of_db)
     diagonal = diag(d2 * transpose(d2));
 
     % Sort diagonal values in ascending
-    [diagonal_sorted,diagonal_original_index]=sort(diagonal,'ascend');
-    %FIXME
-    first_class_candidate = ceil(diagonal_original_index(1)/size_of_db);
+    [~,diagonal_original_index]=sort(diagonal,'ascend');
+    % Give the first candidate class
+    first_candidate_class = ceil(diagonal_original_index(1)/size_of_db);
     
     % Concat images to display the result
     % Here, we take the first N images which are recognized as similar by the
     % program
+%     T_db = read_in_db('./data/T.csv');    
 %     N = 3;
 %     recognized_images=[];
 %     for i = 1:N
