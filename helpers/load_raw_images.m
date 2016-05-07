@@ -1,9 +1,15 @@
-function [raw_img_set] = load_raw_images(folder_path,number_of_image,nat_sort)
+function [raw_image_set,image_loaded] = load_raw_images(folder_path,number_of_image,randomize)
     %raw_img_set: load raw image set (create T) from a folder path.
-    % usage:  [raw_img_set] = load_raw_images(folder_path)
+    % usage:  [raw_image_set,image_loaded] = load_raw_images(folder_path,number_of_image,randomize)
     %
     % where,
+    % ARGS:
     %    folder_path is the path of the considered folder.
+    %    number_of_image: number of image we want to load.
+    %    randomize: natural sort of image if randomize = 0.
+    % RETURNS:
+    %    image_loaded: list the the images which have been loaded in DB.
+    %    raw_image_set: set of loaded image with matrix.
     
     % Dir listing, without dots ('.' && '..')
     dir_listing = remove_dots_from_dir_listing(dir(folder_path));
@@ -22,8 +28,13 @@ function [raw_img_set] = load_raw_images(folder_path,number_of_image,nat_sort)
             for i = 1:length(list_files_actual_folder)
                 files(i,:) = strcat(folder_path,'/',nat_sort_dir_listing(d),'/',list_files_actual_folder(i).name);
             end
-            if nat_sort == 1
-                all_img = files;
+            
+            % Randomize selection of images
+            if randomize == 1
+                % Create c to permute randomly temp
+                c = randperm(10,10);
+                % Permute
+                all_img = files(c,:);
             else
                 all_img = sort_nat(files);
             end
@@ -40,8 +51,9 @@ function [raw_img_set] = load_raw_images(folder_path,number_of_image,nat_sort)
             raw_img = load_image(char(img_paths(i,j)),0);
             % Transform the two-dimentional array in a one-dimentional
             % vector and store it
-            raw_img_set(k,:) = one_line_image(raw_img);
+            raw_image_set(k,:) = one_line_image(raw_img);
             k = k + 1;
         end
     end
+    image_loaded = img_paths;
 end

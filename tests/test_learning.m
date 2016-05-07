@@ -1,4 +1,15 @@
 function [first_candidate_class] = test_learning(path,size_of_db)
+    %test_learning: test the machine learning & database
+    % usage: [first_candidate_class] = test_learning(path,size_of_db)
+    %
+    % where,
+    % ARGS:
+    %    path: path of image to test.
+    %    size_of_db: size of database we will use (ie number of images / individuals 
+    %                in DB.
+    % RETURNS:
+    %    first_candidate_class: first candidate class found by algorithm
+
     % Load test image
     image_test = load_image(path,0);
     % Change the two-dimentional image in a one-dimentional vector
@@ -27,10 +38,11 @@ function [first_candidate_class] = test_learning(path,size_of_db)
     [~,diagonal_original_index]=sort(diagonal,'ascend');
     % Give the first candidate class
     first_candidate_class = ceil(diagonal_original_index(1)/size_of_db);
-    
-    % Concat images to display the result
-    % Here, we take the first N images which are recognized as similar by the
-    % program
+
+%     % Display neighbors:
+%     % Concat images to display the result
+%     % Here, we take the first N images which are recognized as similar by the
+%     % program
 %     T_db = read_in_db('./data/T.csv');    
 %     N = 3;
 %     recognized_images=[];

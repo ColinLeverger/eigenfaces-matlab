@@ -3,7 +3,10 @@ function write_in_db(data,file_name)
     % usage: write_in_db(data,file_name)
     %
     % where,
-    %    data is the ddata (array, ...) we want to write on disk.
+    % ARGS:
+    %    data is the data (array, ...) we want to write on disk.
+    %    file_name: file name.
+    
     csvwrite(file_name,data)
 end
 

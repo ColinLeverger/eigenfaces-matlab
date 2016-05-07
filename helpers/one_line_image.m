@@ -5,8 +5,11 @@ function [one_lined_img] = one_line_image(raw_data)
     % usage: [data] = one_line_image(raw_data)
     %
     % where,
-    %    one_lined_img is our image in one line
+    % ARGS:
     %    raw_data is the image in a raw form (two-dimentions, see: 
+    % RETURNS:
+    %    one_lined_img is our image in one line.
+    % NOTE:
     %    img = [ 1 , 2 , 3 , ... ; 1 , 2 , 3 , ... ; ... ; ... ])
     
     one_lined_img = raw_data(:)';

@@ -1,7 +1,18 @@
 % Script to do the learning
-function do_learning(number_of_images,nat_sort,size_E)
+function [image_loaded] = do_learning(number_of_images,randomize,size_E)
+    %do_learning: do machine learning for number_of_images images
+    % usage: [image_loaded] = do_learning(number_of_images,randomize,size_E)
+    %
+    % where,
+    % ARGS:
+    %    number_of_images: number of images we want to put in DB.
+    %    randomize: randomized selection of images.
+    %    size_E: size of the truncated Eigenfaces we want to use.
+    % RETURNS:
+    %    image_loaded: paths of loaded images (ie images that are in DB)
+    
     % Load raw data
-    T = load_raw_images('./att_faces/',number_of_images,nat_sort);
+    [T,image_loaded] = load_raw_images('./att_faces',number_of_images,randomize);
     [m,S] = create_m_and_s(T);
     % Normalize images
     T2 = normalize(T,m,S);

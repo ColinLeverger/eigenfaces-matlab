@@ -3,8 +3,11 @@ function [csv] = read_in_db(file_name)
     % usage:  [M] = read_in_db(file_name)
     %
     % where,
-    %    csv is the value(s) you want to read.
+    % ARGS:
     %    file_name is the file name of the .csv file you want to read.
+    % RETURNS:
+    %    csv is the value(s) you want to read.
+
     csv = csvread(file_name);
 end
 
