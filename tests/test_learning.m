@@ -1,12 +1,13 @@
-function [first_candidate_class] = test_learning(path,size_of_db)
+function [first_candidate_class] = test_learning(path,size_of_db,display_result)
     %test_learning: test the machine learning & database
-    % usage: [first_candidate_class] = test_learning(path,size_of_db)
+    % usage: [first_candidate_class] = test_learning(path,size_of_db,display_result)
     %
     % where,
     % ARGS:
     %    path: path of image to test.
     %    size_of_db: size of the database we will use (i.e. number of images / individuals 
     %                in DB.
+    %    display_result: display comparison between neighbours.
     % RETURNS:
     %    first_candidate_class: first candidate class found by algorithms
 
@@ -39,19 +40,21 @@ function [first_candidate_class] = test_learning(path,size_of_db)
     % Give the first candidate class
     first_candidate_class = ceil(diagonal_original_index(1)/size_of_db);
 
-%     % Display neighbors:
-%     % Concat images to display the result
-%     % Here, we take the first N images which are recognized as similar by the
-%     % program
-%     T_db = read_in_db('./data/T.csv');    
-%     N = 3;
-%     recognized_images=[];
-%     for i = 1:N
-%         recognized_image_in_line = T_db(diagonal_original_index(i),:);
-%         recognized_images = [recognized_images reshape(recognized_image_in_line,[56,46])];
-%     end
-% 
-%     % Display comparison
-%     comparison = [image_test recognized_images];
-%     show_image(comparison);
+    if display_result == 1
+        % Display neighbours:
+        % Concat images to display the result
+        % Here, we take the first N images which are recognized as similar by the
+        % program
+        T_db = read_in_db('./data/T.csv');    
+        N = 3;
+        recognized_images=[];
+        for i = 1:N
+            recognized_image_in_line = T_db(diagonal_original_index(i),:);
+            recognized_images = [recognized_images reshape(recognized_image_in_line,[56,46])];
+        end
+
+        % Display comparison
+        comparison = [image_test recognized_images];
+        show_image(comparison);
+    end
 end

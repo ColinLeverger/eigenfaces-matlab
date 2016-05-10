@@ -13,6 +13,9 @@ close all;
 perc_random = [];
 perc_not_random = [];
 
+% Display the results / the 5 nearest neighbours?
+display_result = 1;
+
 % For various size of E...
 for size_E = 10:10:100
     disp(' ');
@@ -23,11 +26,11 @@ for size_E = 10:10:100
     randomize = 0;
 
     disp('DO LEARNING WITHOUT RANDOMISED IMAGE SELECTION');
-    perc1 = benchmark(randomize,size_E);
+    perc1 = benchmark(randomize,size_E,display_result);
 
     randomize = 1;
     disp('DO LEARNING WITH RANDOMISED IMAGE SELECTION');
-    perc2 = benchmark(randomize,size_E);
+    perc2 = benchmark(randomize,size_E,display_result);
 
     % Comparison between perfs
     perc_not_random = [perc_not_random ; size_E , perc1];
@@ -35,7 +38,7 @@ for size_E = 10:10:100
     toc
 end
 
-% Display results
+% Display results of overall accuracy
 figure();
 all=[];
 for i=10:10:100

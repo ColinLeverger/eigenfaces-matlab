@@ -1,13 +1,14 @@
 % AKA Overall Accuracy
-function [ perc ] = benchmark(randomise,size_E)
+function [ perc ] = benchmark(randomise,size_E,display_result)
     %benchmark: do benchmark for this eigenfaces algorithm
-    % usage: benchmark(randomise,size_E)
+    % usage: benchmark(randomise,size_E,display_result)
     %
     % where,
     % ARGS:
     %    randomise: boolean, represent if we want to randomize of not our
     %    dataset.
     %    size_E: size of the truncated Eigenfaces we want to use.
+    %    display_result: display the neighbours in the test_learning function. 
     % RETURNS:
     %    perc: percentages of success for this benchmark.
 
@@ -35,7 +36,7 @@ function [ perc ] = benchmark(randomise,size_E)
             path_of_actual_image = char(images_to_test(j));
             
             % Test learning
-            class_found = test_learning(path_of_actual_image,i);
+            class_found = test_learning(path_of_actual_image,i,display_result);
             
             % Find class of actual image (with regex in name of the path)
             nums_in_path = regexp(path_of_actual_image,'([0-9]+)','match');
