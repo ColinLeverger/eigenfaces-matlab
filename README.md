@@ -64,7 +64,7 @@ Complete result datasets can be found in "./results" folder.
 
 ### Example of nearest neighbours for one individual 
 
-![Nearest neighbours](./results/test1.png | width=250)
+![Nearest neighbours](./results/test1.png)
 
 
 
