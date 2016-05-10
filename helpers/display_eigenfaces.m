@@ -6,8 +6,8 @@ function display_eigenfaces(E)
     %    E is a cell array (vector) of eigenfaces values.
 
     % Multiply E by 1500 in order to have something to display
-    % Without this multiplication there is nothing to show becaue E's
-    % values are two low...
+    % Without this multiplication there is nothing to show because E's
+    % values are too low...
     E = E * 1500 + 128;
 
     % Compute the eigenfaces

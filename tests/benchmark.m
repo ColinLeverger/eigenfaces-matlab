@@ -1,10 +1,11 @@
+% AKA Overall Accuracy
 function [ perc ] = benchmark(randomise,size_E)
     %benchmark: do benchmark for this eigenfaces algorithm
     % usage: benchmark(randomise,size_E)
     %
     % where,
     % ARGS:
-    %    randomise: boolean, represend if we want to randomize of not our
+    %    randomise: boolean, represent if we want to randomize of not our
     %    dataset.
     %    size_E: size of the truncated Eigenfaces we want to use.
     % RETURNS:
@@ -12,6 +13,7 @@ function [ perc ] = benchmark(randomise,size_E)
 
     perc = zeros(1,9);
     for i = 1:9
+        % Init confusion matrix
         res = zeros(40,40);
         learning_announcement = sprintf('DO LEARNING WITH %d IMAGES',i);
         disp(learning_announcement);

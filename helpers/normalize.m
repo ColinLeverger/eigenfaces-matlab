@@ -1,5 +1,5 @@
 function [T2] = normalize(T,m,S)
-    %normalize: normalise image vector, using mean and std.
+    %normalize: normalise image vector, using means and std.
     % usage:  [T2] = normalize(T,m,S)
     %
     % where,

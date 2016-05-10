@@ -1,12 +1,69 @@
-# Étapes du projet
+# Eigenfaces & face recognition with Matlab
 
-1. Redimentionner toutes les images
-2. Normaliser les images pour qu’elles aient toute la même moyenne et le même écart type (donc le même niveau de gris)
+Yet another Eigenfaces project using Matlab.
 
-X = X — mean(T,2) / std(T,2);
+## About Eigenfaces
 
-3. Mettre bout à bout toutes les lignes de chaque photo normalisée (pour faire un très long vecteur 1->2576, soit 56 * 46) et dans le même tableau 2D toutes ces lignes (il devrait faire 400 * 2576 lignes) --> c’est le tableau standard, tableau « individu/attribut »
-4. Reduire la taille du vecteur sur les abscisses avec une fonction spéciale qui permet de garder 48 paramètres au lieu de 2576. Voir ACP ou PCA. 48, car c’est le nombre de détecteurs mpeg4. Par contre, on peut changer le 48, en prendre plus, mais on risque de noyer la reconnaissance dans trop d’information, ou moins au risque d’avoir une chute dans le taux de reconnaissance. Cette étape est la procédure centrale du programme.
-5. Calculer les vecteurs propres : on va pouvoir s’en servir pour faire les comparaisons : ce seront les hagenface. La fonction doit donc renvoyer deux vecteurs.
+The Eigenfaces are used to compute similarities between images, and to recognize individuals automatically with given pictures, using a computer. The given pictures represent faces of individuals, and are useable as it is (no need to crop, etc.)
 
-Analyse en fonction principale : svd
+### Raw materials for this project
+
+- Dataset: 40 individuals, 10 pictures per individuals. Images found in the website [http://www.cl.cam.ac.uk/](http://www.cl.cam.ac.uk/research/dtg/attarchive/facedatabase.html).
+- Database: will contain some pictures & information about the guys we want to recognize. The DB will be initialised & created by a script, in a .csv format.
+- Test scripts: when the database is filled with data about individuals, it could be interesting to test the results of algorithms...
+
+### Going further...
+
+If you want to learn more about Eigenfaces, I strongly encourage you to visit the website [http://scholarpedia.org/article/Eigenfaces](http://scholarpedia.org/article/Eigenfaces)
+
+## How to use this project?
+
+All the functions & usages are well documented in code. If you want to have a quick overview of functionalities:
+
+### Getting started
+
+- Clone this repos
+- Take a look at "./att\_faces". This folder contains the images we will work with.
+- Take a look at "./results". This folder contains results for previous executions.
+- Take a look at "./data". This folder contains DB for a previous execution.
+
+### Running scripts yourself
+
+- Load script ./"tests.m". This script will load all the subscripts and run the algorithm, with the following parameters:
+    + l.17: range of E's size you want to test
+
+This script will display the overall accuracy for the execution (with random image selection and natural image selection to fill the database).
+
+### Special use of scripts
+
+You want to customize further the scripts?
+
+- If you want to do the learning independently:
+    + Load the function "./tests/do_learning.m"
+    + `usage: [image_loaded] = do_learning(number_of_images,randomize,size_E)`
+        * `randomize` is a boolean; it will create a database with randomly (or not) images. Note that a trace of loaded images is kept.
+- If you want to test an image separately:
+    + Load the function "./tests/test_learning.m"
+    + `usage: [first_candidate_class] = test_learning(path,size_of_db)`
+        * `path` is the path of the image you want to test.
+        * `size_of_db` is the number of images which have been stored in the DB you want to use.
+
+## Results & screenshots
+
+Complete result datasets can be found in "./results" folder.
+
+### Results of overall accuracy test, without randomly loaded images in DB.
+
+![Results of overall accuracy test, without randomly loaded images in DB](./results/perc_not_random.png)
+
+### Results of overall accuracy test, with randomly loaded images in DB.
+
+![Results of overall accuracy test, with randomly loaded images in DB](./results/perc_random.png)
+
+### Nearest neighbours for one individual 
+
+![Nearest neighbours](./results/test1.png)
+
+
+
+

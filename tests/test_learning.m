@@ -5,14 +5,14 @@ function [first_candidate_class] = test_learning(path,size_of_db)
     % where,
     % ARGS:
     %    path: path of image to test.
-    %    size_of_db: size of database we will use (ie number of images / individuals 
+    %    size_of_db: size of the database we will use (i.e. number of images / individuals 
     %                in DB.
     % RETURNS:
-    %    first_candidate_class: first candidate class found by algorithm
+    %    first_candidate_class: first candidate class found by algorithms
 
     % Load test image
     image_test = load_image(path,0);
-    % Change the two-dimentional image in a one-dimentional vector
+    % Change the two-dimensional image in a one-dimensional vector
     image_test_one_line = one_line_image(image_test);
 
     % Load data from DB
@@ -30,7 +30,7 @@ function [first_candidate_class] = test_learning(path,size_of_db)
 
     % Compute difference between d_img and the d_db which is in the database
     d2 = d_img - d_db; 
-    % Compute the diagonal value, which is the euclidian distribution between
+    % Compute the diagonal value, which is the Euclidian distribution between
     % d_img and d_db
     diagonal = diag(d2 * transpose(d2));
 

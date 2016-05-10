@@ -9,7 +9,7 @@ function [image_loaded] = do_learning(number_of_images,randomize,size_E)
     %    randomize: randomized selection of images.
     %    size_E: size of the truncated Eigenfaces we want to use.
     % RETURNS:
-    %    image_loaded: paths of loaded images (ie images that are in DB)
+    %    image_loaded: paths of loaded images (i.e. images that are in DB)
     
     % Load raw data
     [T,image_loaded] = load_raw_images('./att_faces',number_of_images,randomize);
