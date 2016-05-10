@@ -4,7 +4,7 @@ Yet another Eigenfaces project using Matlab.
 
 ## About Eigenfaces
 
-The Eigenfaces are used to compute similarities between images, and to recognize individuals automatically with given pictures, using a computer. The given pictures represent faces of individuals, and are useable as it is (no need to crop, etc.)
+The Eigenfaces are used to compute similarities between images, and to recognize individuals automatically with given pictures, using a computer. The given pictures represent faces of individuals, and are useable as such (no need to crop, etc.)
 
 ### Raw materials for this project
 
@@ -18,7 +18,7 @@ If you want to learn more about Eigenfaces, I strongly encourage you to visit th
 
 ## How to use this project?
 
-All the functions & usages are well documented in code. If you want to have a quick overview of functionalities:
+All the functions & usages are well documented in code. If you want to have a quick overview of functionalities, read below.
 
 ### Getting started
 
@@ -29,7 +29,7 @@ All the functions & usages are well documented in code. If you want to have a qu
 
 ### Running scripts yourself
 
-- Load script ./"tests.m". This script will load all the subscripts and run the algorithm, with the following parameters:
+- Load script "./tests.m". This script will load all the subscripts and run the algorithm, with the following parameters:
     + l.17: range of E's size you want to test
 
 This script will display the overall accuracy for the execution (with random image selection and natural image selection to fill the database).
@@ -41,7 +41,7 @@ You want to customize further the scripts?
 - If you want to do the learning independently:
     + Load the function "./tests/do_learning.m"
     + `usage: [image_loaded] = do_learning(number_of_images,randomize,size_E)`
-        * `randomize` is a boolean; it will create a database with randomly (or not) images. Note that a trace of loaded images is kept.
+        * `randomize` is a boolean; it will create a database with randomly loaded (or not) images. Note that a trace of loaded images is kept.
 - If you want to test an image separately:
     + Load the function "./tests/test_learning.m"
     + `usage: [first_candidate_class] = test_learning(path,size_of_db)`
