@@ -22,8 +22,8 @@ function [image_loaded] = do_learning(number_of_images,randomize,size_E)
     write_in_db(m(1,:),'./data/m.csv');
     write_in_db(S(1,:),'./data/S.csv');
 
-    % Create & write eigenfaces
-    [U,S,E] = create_e(T2,size_E);
+    % Create & write eigenfaces~
+    [~,~,E] = create_e(T2,size_E);
     write_in_db(E,'./data/E.csv');
     %display_eigenfaces(E);
     
