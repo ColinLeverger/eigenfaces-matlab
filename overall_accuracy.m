@@ -1,7 +1,7 @@
 % Add paths for tests
 addpath('./helpers');
 addpath('./learning');
-addpath('./tests');
+addpath('./scripts');
 addpath('./data');
 addpath('./att_faces');
 
@@ -14,7 +14,7 @@ perc_random = [];
 perc_not_random = [];
 
 % Display the results / the 5 nearest neighbours?
-display_result = 1;
+display_result = 0;
 
 % For various size of E...
 for size_E = 10:10:100
